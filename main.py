@@ -8,6 +8,7 @@ class Event:
         self.attendees = []
 
 
+
     def __str__(self):
         return f'{self.host_name}, {self.data}, {self.time}, {self.location}, {self.attendees}'
 
