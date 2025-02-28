@@ -12,9 +12,6 @@ class Event:
     def __str__(self):
         return f'{self.host_name}, {self.data}, {self.time}, {self.location}, {self.attendees}'
 
-    def __repr__(self):
-        return f'{self.host_name}, {self.data}, {self.time}, {self.location}, {self.attendees}'
-
     def add_attendee(self, attendee_first_name: str, attendee_last_name:str):
         self.attendees.append((attendee_first_name, attendee_last_name))
 
@@ -25,9 +22,14 @@ class Event:
         return self.attendees
 
     def get_event_details(self):
-        return {
-            'Host': self.host_name,
-            'Data': self.data,
-            'Time': self.time,
-            'Location': self.location,
-        }
+        return{'Host': self.host_name,'Data': self.data, 'Time:': self.time,'Location': self.location,}
+
+
+    def __repr__(self):
+        return 'Event({}, {}, {}, {}, {})'.format(
+            self.host_name,
+            self.data,
+            self.time,
+            self.location,
+            self.attendees)
+
