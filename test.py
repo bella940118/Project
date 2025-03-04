@@ -20,7 +20,7 @@ class MyTestCase(unittest.TestCase):
     def test_get_event_details(self):
         event= Event("Coding Workshop", "2025-03-10","10:00AM","Room 101")
         result= event.get_event_details()
-        self.assertEqual(result, {'Coding Workshop','2025-03-10','10:00AM','Room 101'})
+        self.assertEqual(result, {'Codding Workshop','2025-03-10','10:00AM','Room 101'})
 
  
 if __name__ == '__main__':
