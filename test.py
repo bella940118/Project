@@ -1,9 +1,7 @@
 import unittest
-from main import Event, EventManager  # Import your classes from main.py
+from main import Event, EventManager =
 
 class TestEvent(unittest.TestCase):
-
-
 # Set up test data
     def setUp(self):
         self.event = Event("Birthday Party", "Ken Smith", "2025-05-10", "18:00", "Los Angeles")
@@ -68,10 +66,8 @@ class TestEventManager(unittest.TestCase):
 
 # Test check_event_conflict
 def test_check_event_conflict1(self):
-    """Test if conflict detection works when a conflict exists"""
     self.manager.add_event("Birthday Party", "Ken Smith", "2025-05-10", "18:00", "Los Angeles")
     self.assertTrue(self.manager.check_event_conflict("2025-05-10", "18:00"))
-
 
 def test_check_event_conflict2(self):
     self.manager.add_event("Birthday Party", "Ken Smith", "2025-05-10", "18:00", "Los Angeles")

@@ -8,7 +8,7 @@ class Event:
         self.date = date
         self.time = time
         self.location = location
-        self.attendees = {}  # Dictionary to store attendee details
+        self.attendees = {}
 
 # Adds an attendee to the event.
     def add_attendee(self, first_name: str, last_name: str, email: str) -> str:
@@ -64,7 +64,6 @@ class EventManager:
 
 # Retrieves details of a specific event.
     def get_event(self, name: str) -> dict:
-        """Retrieves the details of a specific event."""
         if name in self.events:
             return self.events[name].get_event_details()
         return {}

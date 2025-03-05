@@ -52,8 +52,8 @@ def display_menu(role):
 
 # Main function to handle user interaction
 def main():
-    event_manager = load_events_from_file("text1.txt")  # Read from text1.txt
-    print_loaded_events(event_manager)  # ✅ Print events immediately after loading
+    event_manager = load_events_from_file("text1.txt")
+    print_loaded_events(event_manager)
 
     # Ask for user role
     role = ""
