@@ -49,7 +49,6 @@ def display_menu(role):
 
     print("12. Exit")
 
-
 # Main function to handle user interaction
 def main():
     event_manager = load_events_from_file("text1.txt")

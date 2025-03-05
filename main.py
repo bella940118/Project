@@ -41,7 +41,6 @@ class Event:
             "Attendees": self.attendees
         }
 
-
 # Initializes an EventManager instance to manage multiple events.
 class EventManager:
     def __init__(self):

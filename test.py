@@ -1,6 +1,7 @@
 import unittest
 from main import Event, EventManager =
 
+
 class TestEvent(unittest.TestCase):
 # Set up test data
     def setUp(self):

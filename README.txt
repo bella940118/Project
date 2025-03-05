@@ -1,6 +1,7 @@
 
 Project Name: Event Planner
 
+
 Description:
 This project allows users to manage and attend events efficiently. Users can choose to interact
 as a Host (who creates and manages events) or an Attendee (who can join events and check for schedule conflicts)
