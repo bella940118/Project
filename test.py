@@ -1,5 +1,5 @@
 import unittest
-from main import Event, EventManager =
+from main import Event, EventManager
 
 
 class TestEvent(unittest.TestCase):
@@ -74,6 +74,13 @@ def test_check_event_conflict2(self):
     self.manager.add_event("Birthday Party", "Ken Smith", "2025-05-10", "18:00", "Los Angeles")
     self.assertFalse(self.manager.check_event_conflict("2025-05-11", "18:00"))
     self.assertFalse(self.manager.check_event_conflict("2025-05-10", "19:00"))
+
+from main import EventManager
+def test_personal_conflict1(self):
+    self.manager.add_event("Birthday Party", "Ken Smith", "2025-05-10", "18:00", "Los Angeles")
+    self.manager.add_event("Birthday Party 2", "Ken Smith", "2025-05-10", "18:00", "Elsewhere")
+    event_list = self.manager.list_events()
+    self.assertequal((self.manager.personal_conflict("Ken Smith",event_list),True))
 
 if __name__ == "__main__":
     unittest.main()

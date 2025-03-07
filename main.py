@@ -1,5 +1,4 @@
 
-
 # Initializes an Event object.
 class Event:
     def __init__(self, name: str, host_name: str, date: str, time: str, location: str):
@@ -78,3 +77,55 @@ class EventManager:
             if event.date == date and event.time == time:
                 return True
         return False
+
+    def event_conflict(A: Event, B: Event):
+        if A.location == B.location and A.time == B.time:
+            return True
+
+    def personal_conflict(Name:str,Events:list[Event])->bool:
+        for A in range(len(Events)):
+            for B in range(len(Events)):
+                if Events[A].time == Events[B].time and (not(A==B)):
+                    for m in Events[A].attendees:
+                        for n in Events[B].attendees:
+                            if (m==Name and n==Name):
+                                return True
+        return False
+
+    def partial_conflict(Name:str,Events:list[Event])->bool:
+        for A in range(len(Events)):
+            for B in range(len(Events)):
+                TimeA=[]
+                TimeB=[]
+                for x in Events[A].split("-",":"):
+                    if x is int:
+                        TimeA.append(x)
+                for x in Events[B].split("-",":"): #make sure that this split functions the right way
+                    if x is int:
+                        TimeB.append(x)
+                StartA=TimeA[0]*60+TimeA[1]
+                EndA=TimeA[2]*60+TimeA[3]
+                StartB=TimeB[0]*60+TimeB[1]
+                EndB=TimeB[2]*60+TimeB[3]
+                if StartA >= EndB or StartB >= EndA:
+                    return False
+                if EndB <= StartA or EndA <= StartB:
+                    return False
+                else:
+                    for m in Events[A].attendees:
+                        for n in Events[B].attendees:
+                            if (m==Name and n==Name):
+                                return True
+                return False
+
+
+
+
+
+    def check_for_conflicts(A: Event, all_events: list[Event]):
+        for n in range(len(all_events)):
+            x = event_conflict(A, all_events[n])
+            if x == True:
+                return "events conflicts with other event"
+                break
+
