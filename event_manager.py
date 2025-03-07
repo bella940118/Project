@@ -62,6 +62,10 @@ def main():
     while True:
         display_menu(role)
         choice = input("Please input a number: ")
+# add check date/time format, for example: if date doenst follow yyyy-mm-dd
+# return Invalid date
+# for time is HH:MM if it doesn't follow return Invalid time
+        
 
         if choice == "1" and role == "host":
             name = input("Enter event name: ").strip()
