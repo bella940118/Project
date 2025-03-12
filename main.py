@@ -95,29 +95,29 @@ class EventManager:
     def partial_conflict(self, Name: str, Events: list[Event]) -> bool:
         for A in range(len(Events)):
             for B in range(len(Events)):
-
-                TimeA = []
-                TimeB = []
-                TimesplitA = Events[A].time.replace('-', ':').split(":")
-                TimesplitB = Events[B].time.replace('-', ':').split(":")
-                # your_string.replace('-', ':').split(':')
-                for x in TimesplitA:
-                    TimeA.append(int(x))
-                for x in TimesplitB:  # make sure that this split functions the right way
-                    TimeB.append(int(x))
-                StartA = TimeA[0] * 60 + TimeA[1]
-                EndA = TimeA[2] * 60 + TimeA[3]
-                StartB = TimeB[0] * 60 + TimeB[1]
-                EndB = TimeB[2] * 60 + TimeB[3]
-                if StartA >= EndB or StartB >= EndA:
-                    return False
-                elif EndB <= StartA or EndA <= StartB:
-                    return False
-                else:
-                    for m in Events[A].attendees:
-                        for n in Events[B].attendees:
-                            if (m == Name and n == Name):
-                                return True
+                if Events[A].date == Events[B].date:
+                    TimeA = []
+                    TimeB = []
+                    TimesplitA = Events[A].time.replace('-', ':').split(":")
+                    TimesplitB = Events[B].time.replace('-', ':').split(":")
+                    # your_string.replace('-', ':').split(':')
+                    for x in TimesplitA:
+                        TimeA.append(int(x))
+                    for x in TimesplitB:  # make sure that this split functions the right way
+                        TimeB.append(int(x))
+                    StartA = TimeA[0] * 60 + TimeA[1]
+                    EndA = TimeA[2] * 60 + TimeA[3]
+                    StartB = TimeB[0] * 60 + TimeB[1]
+                    EndB = TimeB[2] * 60 + TimeB[3]
+                    if StartA >= EndB or StartB >= EndA:
+                        return False
+                    elif EndB <= StartA or EndA <= StartB:
+                        return False
+                    else:
+                        for m in Events[A].attendees:
+                            for n in Events[B].attendees:
+                                if (m == Name and n == Name):
+                                    return True
                 return False
 
 
