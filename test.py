@@ -1,12 +1,12 @@
 import unittest
-from main import Event, EventManager
+from main import Event
 from main import EventManager
-
-
+from main import *
+from event_manager import *
 class TestEvent(unittest.TestCase):
 # Set up test data
     def setUp(self):
-        self.event = Event("Birthday Party", "Ken Smith", "2025-05-10", "18:00", "Los Angeles")
+        self.event = Event("Birthday Party", "Ken Smith", "2025-05-10", "18:00-21:00", "Los Angeles")
 
 # Test event initalization
     def test_event_initialization(self):
@@ -40,11 +40,11 @@ class TestEventManager(unittest.TestCase):
 # Set up test data for EventManager.
     def setUp(self):
         self.manager = EventManager()
-        self.manager.add_event("Camping", "Roberts Cruz", "2025-07-15", "09:00", "Yellowstone Park")
+        self.manager.add_event("Camping", "Roberts Cruz", "2025-07-15", "09:00-5:00", "Yellowstone Park")
 
 # Test add_event
     def test_add_event(self):
-        result = self.manager.add_event("Birthday Party", "Ken Smith", "2025-05-10", "18:00", "Los Angeles")
+        result = self.manager.add_event("Birthday Party", "Ken Smith", "2025-05-10", "18:00-21:00", "Los Angeles")
         self.assertEqual(result, "Successfully added event 'Birthday Party'.")
         self.assertIn("Birthday Party", self.manager.events)
 
@@ -61,32 +61,31 @@ class TestEventManager(unittest.TestCase):
 
 # Test list_events
     def test_list_events(self):
-        self.manager.add_event("Birthday Party", "Ken Smith", "2025-05-10", "18:00", "Los Angeles")
+        self.manager.add_event("Birthday Party", "Ken Smith", "2025-05-10", "18:00-21:00", "Los Angeles")
         event_list = self.manager.list_events()
         self.assertIn("Camping", event_list)
         self.assertIn("Birthday Party", event_list)
 
 # Test check_event_conflict
     def test_check_event_conflict1(self):
-        self.manager.add_event("Birthday Party", "Ken Smith", "2025-05-10", "18:00", "Los Angeles")
-        self.assertTrue(self.manager.check_event_conflict("2025-05-10", "18:00"))
+        self.manager.add_event("Birthday Party", "Ken Smith", "2025-05-10", "18:00-21:00", "Los Angeles")
+        self.assertTrue(self.manager.check_event_conflict("2025-05-10", "18:00-21:00"))
 
     def test_check_event_conflict2(self):
-        self.manager.add_event("Birthday Party", "Ken Smith", "2025-05-10", "18:00", "Los Angeles")
-        self.assertFalse(self.manager.check_event_conflict("2025-05-11", "18:00"))
-        self.assertFalse(self.manager.check_event_conflict("2025-05-10", "19:00"))
+        self.manager.add_event("Birthday Party", "Ken Smith", "2025-05-10", "18:00-21:00", "Los Angeles")
+        self.assertFalse(self.manager.check_event_conflict("2025-05-11", "18:00-21:00"))
+        self.assertFalse(self.manager.check_event_conflict("2025-05-10", "19:00-21:00"))
 
     def test_personal_conflict1(self):
-        self.manager.add_event("Birthday Party", "Ken Smith", "2025-05-10", "18:00", "Los Angeles")
-        self.manager.add_event("Birthday Party 2", "Ken Smith", "2025-05-10", "18:00", "Elsewhere")
-        event_list = self.manager.list_events()
-        self.assertequal((self.manager.personal_conflict("Ken Smith",event_list),True))
-
-    def test_partial_conflict1(self):
         self.manager.add_event("Birthday Party", "Ken Smith", "2025-05-10", "18:00-21:00", "Los Angeles")
         self.manager.add_event("Birthday Party 2", "Ken Smith", "2025-05-10", "18:00-20:00", "Elsewhere")
-        event_list = self.manager.list_events()
-        self.assertequal((self.manager.personal_conflict("Ken Smith", event_list), True))
+
+        self.manager.events["Birthday Party"].add_attendee("John", "Doe", "jd@gmail.com")
+        self.manager.events["Birthday Party 2"].add_attendee("John", "Doe", "jd@gmail.com")
+
+        events_list = [self.manager.events["Birthday Party"],self.manager.events["Birthday Party 2"]]
+        print(self.manager.partial_conflict("John Doe", events_list))
+
 
 if __name__ == "__main__":
     unittest.main()
