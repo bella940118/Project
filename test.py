@@ -13,7 +13,7 @@ class TestEvent(unittest.TestCase):
         self.assertEqual(self.event.name, "Birthday Party")
         self.assertEqual(self.event.host_name, "Ken Smith")
         self.assertEqual(self.event.date, "2025-05-10")
-        self.assertEqual(self.event.time, "18:00")
+        self.assertEqual(self.event.time, "18:00-21:00")
         self.assertEqual(self.event.location, "Los Angeles")
         self.assertEqual(self.event.attendees, {})
 

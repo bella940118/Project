@@ -105,6 +105,7 @@ class EventManager:
                         TimeA.append(int(x))
                     for x in TimesplitB:
                         TimeB.append(int(x))
+                    print(TimeA)
                     StartA = TimeA[0] * 60 + TimeA[1]
                     EndA = TimeA[2] * 60 + TimeA[3]
                     StartB = TimeB[0] * 60 + TimeB[1]
@@ -127,12 +128,3 @@ class EventManager:
          #   if x == True:
              #   return "events conflicts with other event"
              #   break
-
-if __name__ == "__main__":
-    event_manager = EventManager()
-    event1 = Event("Birthday Party", "Ken Smith", "2025-05-10", "18:00", "Los Angeles")
-    event2 = Event("Camping", "Roberts Cruz", "2025-07-15", "09:00", "Yellowstone Park")
-    event_list = [event1, event2]
-    event1.add_attendee("John","Doe", "jd@gmail.com")
-    event2.add_attendee("John","Doe", "jd@gmail.com")
-    print(event_manager.partial_conflict("John Doe", event_list))
