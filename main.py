@@ -37,8 +37,8 @@ class Event:
             "Date": self.date,
             "Time": self.time,
             "Location": self.location,
-            "Attendees": self.attendees
-        }
+            "Attendees": self.attendees}
+
 
 # Initializes an EventManager instance to manage multiple events.
 class EventManager:
@@ -103,7 +103,7 @@ class EventManager:
                     # your_string.replace('-', ':').split(':')
                     for x in TimesplitA:
                         TimeA.append(int(x))
-                    for x in TimesplitB:  # make sure that this split functions the right way
+                    for x in TimesplitB:
                         TimeB.append(int(x))
                     StartA = TimeA[0] * 60 + TimeA[1]
                     EndA = TimeA[2] * 60 + TimeA[3]

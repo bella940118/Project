@@ -155,19 +155,3 @@ if __name__ == "__main__":
     main()
 
 
-from main import *
-def event_conflict(A:Event,B:Event):
-   if A.location == B.location and A.time == B.time:
-       return True
-
-def personal_conflict (A:Event,B:Event):
-    # we should potentially store this in a dictionary where the keys are the attendee names are
-     #the keys and they determine which events the person has scheduled, and we can create a
-     #function that can determine whether they have any conflicting event at that time.
-
-def check_for_conflicts(A:Event,all_events:list[Event]):
-    for n in range(len(all_events)):
-        x= event_conflict(A,all_events[n])
-        if x== True:
-            return "events conflicts with other event"
-            break
